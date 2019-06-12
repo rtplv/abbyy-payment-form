@@ -10,18 +10,28 @@ import {
 } from 'components/ui';
 
 class PaymentFrequency extends PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    type: PropTypes.string,
+
+    weekValue: PropTypes.number,
+    monthValue: PropTypes.number,
+
+    onTypeChange: PropTypes.func,
+    onWeekValueChange: PropTypes.func,
+    onMonthValueChange: PropTypes.func,
+  };
 
   state = {
-    freqType: 'weekly',
     datePickerShown: false,
   };
 
   render() {
     const {
-      freqType,
-      datePickerShown
-    } = this.state;
+      type,
+      weekValue,
+      monthValue
+    } = this.props;
+    const { datePickerShown } = this.state;
 
     return (
       <FormRow className="payment-repeat-frequency"
@@ -29,13 +39,15 @@ class PaymentFrequency extends PureComponent {
         <Option className="payment-repeat-frequency__option"
                 name="frequency"
                 value="weekly"
-                checked={freqType === 'weekly'}
+                checked={type === 'weekly'}
                 onCheck={this.handleOptionChecked}>
           <span className="payment-repeat-frequency__label">
             еженедельно в
           </span>
 
           <select name="weekDay"
+                  value={weekValue}
+                  onChange={this.handleWeekValueChange}
                   id="weekDay">
             <option value="1">понедельник</option>
             <option value="2">вторник</option>
@@ -50,13 +62,15 @@ class PaymentFrequency extends PureComponent {
         <Option className="payment-repeat-frequency__option"
                 name="frequency"
                 value="monthly"
-                checked={freqType === 'monthly'}
+                checked={type === 'monthly'}
                 onCheck={this.handleOptionChecked}>
           <span className="payment-repeat-frequency__label">
             ежемесячно
           </span>
 
           <select name="monthQty"
+                  onChange={this.handleMonthValueChange}
+                  value={monthValue}
                   id="monthQty">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -84,9 +98,25 @@ class PaymentFrequency extends PureComponent {
   }
 
   handleOptionChecked = e => {
-    this.setState({
-      freqType: e.target.value,
-    })
+    if (this.props.onTypeChange) {
+      this.props.onTypeChange(e.target.value);
+    }
+  };
+
+  handleWeekValueChange = e => {
+    if (this.props.onWeekValueChange) {
+      this.props.onWeekValueChange(
+        parseInt(e.target.value, 10)
+      );
+    }
+  };
+
+  handleMonthValueChange = e => {
+    if (this.props.onMonthValueChange) {
+      this.props.onMonthValueChange(
+        parseInt(e.target.value, 10)
+      );
+    }
   };
 
   handleShowDatePicker = e => {
