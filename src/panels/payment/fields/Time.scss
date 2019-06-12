@@ -1,0 +1,18 @@
+.payment-repeat-time {
+  &__field {
+    width: 47px;
+    &::-webkit-clear-button,
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+  }
+  &__description {
+    display: inline-block;
+    margin-left: 20px;
+
+    color: #93929a;
+    font-weight: 500;
+
+    font-style: italic;
+  }
+}
