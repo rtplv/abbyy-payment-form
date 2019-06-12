@@ -5,7 +5,7 @@ import {
 
   SET_QTY_TYPE,
   SET_QTY_VALUE,
-  SET_QTY_BY_MONTH_VALUE,
+  SET_QTY_BY_DATE_VALUE,
 
   SET_TIME
 } from './paymentRepeatFormActionTypes';
@@ -32,8 +32,8 @@ export const handleSetQtyValue = qtyValue => ({
   type: SET_QTY_VALUE,
   payload: qtyValue,
 });
-export const handleSetQtyByMonthValue = qtyValue => ({
-  type: SET_QTY_BY_MONTH_VALUE,
+export const handleSetQtyByDateValue = qtyValue => ({
+  type: SET_QTY_BY_DATE_VALUE,
   payload: qtyValue,
 });
 

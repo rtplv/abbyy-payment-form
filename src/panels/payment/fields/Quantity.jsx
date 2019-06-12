@@ -6,14 +6,23 @@ import './Quantity.scss';
 import { FormRow, Option } from 'components/ui';
 
 class PaymentQuantity extends PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    type: PropTypes.string,
 
-  state = {
-    limitType: 'unlimited',
+    value: PropTypes.number,
+    valueByDate: PropTypes.string,
+
+    onTypeChange: PropTypes.func,
+    onChangeValue: PropTypes.func,
+    onChangeDateValue: PropTypes.func,
   };
 
   render() {
-    const { limitType } = this.state;
+    const {
+      type,
+      value,
+      valueByDate,
+    } = this.props;
 
     return (
       <FormRow className="payment-repeat-quantity"
@@ -22,7 +31,7 @@ class PaymentQuantity extends PureComponent {
           <Option className="payment-repeat-quantity__option"
                   name="quantity"
                   value="unlimited"
-                  checked={limitType === 'unlimited'}
+                  checked={type === 'unlimited'}
                   onCheck={this.handleOptionChecked}>
             неограничено
           </Option>
@@ -30,10 +39,12 @@ class PaymentQuantity extends PureComponent {
           <Option className="payment-repeat-quantity__option"
                   name="quantity"
                   value="byQty"
-                  checked={limitType === 'byQty'}
+                  checked={type === 'byQty'}
                   onCheck={this.handleOptionChecked}>
             <input className="payment-repeat-quantity__limited-by-qty-field"
-                    type="text"/>
+                   value={value}
+                   onChange={this.handleValueChange}
+                   type="text"/>
 
             раза
           </Option>
@@ -41,11 +52,13 @@ class PaymentQuantity extends PureComponent {
           <Option className="payment-repeat-quantity__option"
                   name="quantity"
                   value="byDate"
-                  checked={limitType === 'byDate'}
+                  checked={type === 'byDate'}
                   onCheck={this.handleOptionChecked}>
             до
 
             <input className="payment-repeat-quantity__limited-by-date-field"
+                   value={valueByDate}
+                   onChange={this.handleDateValueChange}
                    type="date"/>
           </Option>
         </div>
@@ -53,11 +66,26 @@ class PaymentQuantity extends PureComponent {
     );
   }
 
+  handleValueChange = e => {
+    if (this.props.onChangeValue) {
+      const value = e.target.value ? parseInt(e.target.value, 10) : 0;
+
+      this.props.onChangeValue(value);
+    }
+  };
+
+  handleDateValueChange = e => {
+    if (this.props.onChangeDateValue) {
+      const value = new Date(e.target.value).getTime();
+      this.props.onChangeDateValue(value);
+    }
+  };
+
   handleOptionChecked = e => {
-    this.setState({
-      limitType: e.target.value,
-    })
-  }
+    if (this.props.onTypeChange) {
+      this.props.onTypeChange(e.target.value);
+    }
+  };
 }
 
 export default PaymentQuantity;

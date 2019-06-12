@@ -18,10 +18,12 @@ import {
 
   handleSetQtyType,
   handleSetQtyValue,
-  handleSetQtyByMonthValue,
+  handleSetQtyByDateValue,
 
   handleSetTime,
 } from './paymentRepeatFormActions';
+
+import { getFormattedDateValue } from './paymentRepeatFormSelectors';
 
 class PaymentRepeatForm extends PureComponent {
   static propTypes = {
@@ -29,6 +31,10 @@ class PaymentRepeatForm extends PureComponent {
     handleSetFreqType: PropTypes.func,
     handleSetFreqMonthValue: PropTypes.func,
     handleSetFreqWeekValue: PropTypes.func,
+
+    handleSetQtyType: PropTypes.func,
+    handleSetQtyValue: PropTypes.func,
+    handleSetQtyByDateValue: PropTypes.func,
 
     handleSetTime: PropTypes.func,
 
@@ -38,7 +44,7 @@ class PaymentRepeatForm extends PureComponent {
 
     qtyType: PropTypes.string,
     qtyValue: PropTypes.number,
-    qtyByMonthValue: PropTypes.number,
+    qtyByDateValue: PropTypes.number,
 
     timeValue: PropTypes.string,
   };
@@ -48,6 +54,11 @@ class PaymentRepeatForm extends PureComponent {
       freqType,
       freqMonthValue,
       freqWeekValue,
+
+      qtyType,
+      qtyValue,
+      qtyByDateValue,
+      formattedQtyByDateValue,
 
       timeValue
     } = this.props;
@@ -64,7 +75,13 @@ class PaymentRepeatForm extends PureComponent {
                             onTypeChange={this.handleFreqTypeChange}
                             onMonthValueChange={this.handleFreqMonthChange}
                             onWeekValueChange={this.handleFreqWeekChange} />
-          <PaymentQuantity />
+
+          <PaymentQuantity type={qtyType}
+                           value={qtyValue}
+                           valueByDate={formattedQtyByDateValue}
+                           onTypeChange={this.handleQtyTypeChange}
+                           onChangeValue={this.handleQtyValueChange}
+                           onChangeDateValue={this.handleQtyDateChange} />
 
           <PaymentTime timeValue={timeValue}
                        onChange={this.handleTimeChange} />
@@ -85,6 +102,16 @@ class PaymentRepeatForm extends PureComponent {
     this.props.handleSetFreqMonthValue(value);
   };
 
+  handleQtyTypeChange = value => {
+    this.props.handleSetQtyType(value);
+  };
+  handleQtyValueChange = value => {
+    this.props.handleSetQtyValue(value);
+  };
+  handleQtyDateChange = value => {
+    this.props.handleSetQtyByDateValue(value);
+  };
+
   handleTimeChange = value => {
     this.props.handleSetTime(value);
   };
@@ -99,11 +126,20 @@ export default connect(state => ({
   freqMonthValue: state.paymentRepeatForm.freqMonthValue,
   freqWeekValue: state.paymentRepeatForm.freqWeekValue,
 
+  qtyType: state.paymentRepeatForm.qtyType,
+  qtyValue: state.paymentRepeatForm.qtyValue,
+  qtyByDateValue: state.paymentRepeatForm.qtyByDateValue,
+  formattedQtyByDateValue: getFormattedDateValue(state),
+
   timeValue: state.paymentRepeatForm.timeValue,
 }), {
   handleSetFreqType,
   handleSetFreqMonthValue,
   handleSetFreqWeekValue,
+
+  handleSetQtyType,
+  handleSetQtyValue,
+  handleSetQtyByDateValue,
 
   handleSetTime,
 })(PaymentRepeatForm);

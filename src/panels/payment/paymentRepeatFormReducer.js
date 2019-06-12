@@ -5,7 +5,7 @@ import {
 
   SET_QTY_TYPE,
   SET_QTY_VALUE,
-  SET_QTY_BY_MONTH_VALUE,
+  SET_QTY_BY_DATE_VALUE,
 
   SET_TIME
 } from './paymentRepeatFormActionTypes';
@@ -17,7 +17,7 @@ const initialState = {
 
   qtyType: 'unlimited',
   qtyValue: 0,
-  qtyByMonthValue: 0,
+  qtyByDateValue: Date.now(),
 
   timeValue: '00:00',
 };
@@ -44,17 +44,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         qtyType: payload,
-        qtyValue: 0,
       };
     case SET_QTY_VALUE:
       return {
         ...state,
         qtyValue: payload
       };
-    case SET_QTY_BY_MONTH_VALUE:
+    case SET_QTY_BY_DATE_VALUE:
       return {
         ...state,
-        qtyByMonthValue: payload
+        qtyByDateValue: payload
       };
     case SET_TIME:
       return {
