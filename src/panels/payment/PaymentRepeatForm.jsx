@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './PaymentRepeatForm.scss';
 
@@ -9,30 +11,54 @@ import {
   PaymentSubmit,
 } from './fields';
 
+import {
+  handleSetFreqType,
+  handleSetFreqValue,
+
+  handleSetQtyType,
+  handleSetQtyValue,
+
+  handleSetTime,
+} from './paymentRepeatFormActions';
+
 class PaymentRepeatForm extends PureComponent {
+  static propTypes = {
+    // from store
+    handleSetTime: PropTypes.func,
+
+    timeValue: PropTypes.string,
+  };
+
   render() {
+    const { timeValue } = this.props;
+
     return (
       <section className="payment-repeat-form">
         <div className="payment-repeat-form__header">
           <h1>Настройка и повтор платежей</h1>
         </div>
         <div  className="payment-repeat-form__body">
-          <form onSubmit={this.handleFormSubmit}>
-            <PaymentFrequency />
-            <PaymentQuantity />
-            <PaymentTime />
-            <PaymentSubmit />
-          </form>
+          <PaymentFrequency />
+          <PaymentQuantity />
+          <PaymentTime timeValue={timeValue}
+                       onChange={this.handleTimeChange} />
+          <PaymentSubmit onSubmit={this.handleFormSubmit}/>
         </div>
       </section>
     );
   }
 
-  handleFormSubmit = e => {
-    e.preventDefault();
+  handleTimeChange = value => {
+    this.props.handleSetTime(value);
+  };
 
-    console.log('Submit');
+  handleFormSubmit = e => {
+    console.log('Сохранено.');
   }
 }
 
-export default PaymentRepeatForm;
+export default connect(state => ({
+  timeValue: state.paymentRepeatForm.timeValue,
+}), {
+  handleSetTime,
+})(PaymentRepeatForm);

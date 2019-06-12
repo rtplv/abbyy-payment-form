@@ -15,7 +15,7 @@ const initialState = {
   qtyType: 'unlimited',
   qtyValue: 0,
 
-  time: '00:00',
+  timeValue: '00:00',
 };
 
 export default (state = initialState, action) => {
@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
     case SET_TIME:
       return {
         ...state,
-        time: payload,
+        timeValue: payload,
       };
     default:
       return state;

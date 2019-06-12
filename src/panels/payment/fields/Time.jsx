@@ -6,14 +6,20 @@ import './Time.scss';
 import { FormRow } from 'components/ui';
 
 class PaymentTime extends PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    timeValue: PropTypes.string,
+    onChange: PropTypes.func,
+  };
 
   render() {
+    const { timeValue } = this.props;
+
     return (
       <FormRow className="payment-repeat-time"
                title="Время">
         <input className="payment-repeat-time__field"
                type="time"
+               value={timeValue}
                onChange={this.handleTimeChange} />
         <span className="payment-repeat-time__description">
           (+4 UTC, время московское)
@@ -24,7 +30,10 @@ class PaymentTime extends PureComponent {
 
   handleTimeChange = e => {
     const { value } = e.target;
-    console.log(value);
+
+    if (this.props.onChange) {
+      this.props.onChange(value);
+    }
   }
 }
 

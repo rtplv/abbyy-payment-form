@@ -6,7 +6,10 @@ import './Submit.scss';
 import { FormRow } from 'components/ui';
 
 class PaymentSubmit extends PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    dates: PropTypes.arrayOf(PropTypes.string),
+    onSubmit: PropTypes.func,
+  };
 
   render() {
     return (
@@ -14,9 +17,16 @@ class PaymentSubmit extends PureComponent {
                title="Сработает">
 
         <button className="ui-button payment-repeat-submit__button"
+                onClick={this.handleFormSubmit}
                 type="submit">Сохранить</button>
       </FormRow>
     );
+  }
+
+  handleFormSubmit = () => {
+    if (this.props.onSubmit) {
+      this.props.onSubmit();
+    }
   }
 }
 
