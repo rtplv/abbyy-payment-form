@@ -3,53 +3,60 @@ import PropTypes from 'prop-types';
 
 import './Quantity.scss';
 
-import { FormRow } from 'components/ui';
+import { FormRow, Option } from 'components/ui';
 
 class PaymentQuantity extends PureComponent {
   static propTypes = {};
 
+  state = {
+    limitType: 'unlimited',
+  };
+
   render() {
+    const { limitType } = this.state;
+
     return (
       <FormRow className="payment-repeat-quantity"
                title="Кол-во">
         <div className="payment-repeat-quantity__options">
-          <div className="payment-repeat-quantity__option">
-            <input type="radio"
-                   name="quantity"
-                   id="unlimitedQty" />
-            <label htmlFor="unlimitedQty">
-              неограничено
-            </label>
-          </div>
+          <Option className="payment-repeat-quantity__option"
+                  name="quantity"
+                  value="unlimited"
+                  checked={limitType === 'unlimited'}
+                  onCheck={this.handleOptionChecked}>
+            неограничено
+          </Option>
 
-          <div className="payment-repeat-quantity__option">
-            <input type="radio"
-                   name="quantity"
-                   id="limitedQty" />
-
+          <Option className="payment-repeat-quantity__option"
+                  name="quantity"
+                  value="byQty"
+                  checked={limitType === 'byQty'}
+                  onCheck={this.handleOptionChecked}>
             <input className="payment-repeat-quantity__limited-by-qty-field"
                     type="text"/>
 
-            <label htmlFor="limitedQty">
-              раза
-            </label>
-          </div>
+            раза
+          </Option>
 
-          <div className="payment-repeat-quantity__option">
-            <input type="radio"
-                   name="quantity"
-                   id="limitedByDateQty" />
-
-            <label htmlFor="limitedByDateQty">
-              до
-            </label>
+          <Option className="payment-repeat-quantity__option"
+                  name="quantity"
+                  value="byDate"
+                  checked={limitType === 'byDate'}
+                  onCheck={this.handleOptionChecked}>
+            до
 
             <input className="payment-repeat-quantity__limited-by-date-field"
                    type="date"/>
-          </div>
+          </Option>
         </div>
       </FormRow>
     );
+  }
+
+  handleOptionChecked = e => {
+    this.setState({
+      limitType: e.target.value,
+    })
   }
 }
 
