@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
+
+import './PaymentRepeatForm.scss';
+
 import {
   PaymentFrequency,
   PaymentQuantity,
   PaymentTime,
-  PaymentSubtotal,
+  PaymentSubmit,
 } from './fields';
 
 class PaymentRepeatForm extends PureComponent {
@@ -18,9 +21,7 @@ class PaymentRepeatForm extends PureComponent {
             <PaymentFrequency />
             <PaymentQuantity />
             <PaymentTime />
-            <PaymentSubtotal />
-            <button className="ui-button"
-                    type="submit">Сохранить</button>
+            <PaymentSubmit />
           </form>
         </div>
       </section>

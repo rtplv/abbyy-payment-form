@@ -8,7 +8,7 @@ class PaymentFrequency extends Component {
 
   render() {
     return (
-      <FormRow className="payment-repeat-form__frequency"
+      <FormRow className="payment-repeat-frequency"
                title="Частота">
 
       </FormRow>

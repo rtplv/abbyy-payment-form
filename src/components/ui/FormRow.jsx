@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import './FormRow.scss';
+
 const FormRow = props => {
   const formRowProps = {
     className: cn(

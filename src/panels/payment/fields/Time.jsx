@@ -8,7 +8,7 @@ class PaymentTime extends Component {
 
   render() {
     return (
-      <FormRow className="payment-repeat-form__time"
+      <FormRow className="payment-repeat-time"
                title="Время">
 
       </FormRow>

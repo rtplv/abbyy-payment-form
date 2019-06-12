@@ -8,7 +8,7 @@ class PaymentQuantity extends Component {
 
   render() {
     return (
-      <FormRow className="payment-repeat-form__quantity"
+      <FormRow className="payment-repeat-quantity"
                title="Кол-во">
 
       </FormRow>
