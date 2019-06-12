@@ -23,7 +23,10 @@ import {
   handleSetTime,
 } from './paymentRepeatFormActions';
 
-import { getFormattedDateValue } from './paymentRepeatFormSelectors';
+import {
+  getFormattedDateValue,
+  getDateIntervalRange
+} from './paymentRepeatFormSelectors';
 
 class PaymentRepeatForm extends PureComponent {
   static propTypes = {
@@ -48,6 +51,10 @@ class PaymentRepeatForm extends PureComponent {
 
     timeValue: PropTypes.string,
   };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(this.props.submitDates);
+  }
 
   render() {
     const {
@@ -130,6 +137,8 @@ export default connect(state => ({
   qtyValue: state.paymentRepeatForm.qtyValue,
   qtyByDateValue: state.paymentRepeatForm.qtyByDateValue,
   formattedQtyByDateValue: getFormattedDateValue(state),
+
+  submitDates: getDateIntervalRange(state),
 
   timeValue: state.paymentRepeatForm.timeValue,
 }), {
