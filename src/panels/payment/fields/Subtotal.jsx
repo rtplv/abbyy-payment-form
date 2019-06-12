@@ -8,7 +8,8 @@ class PaymentSubtotal extends Component {
 
   render() {
     return (
-      <FormRow className="payment-repeat-form__subtotal">
+      <FormRow className="payment-repeat-form__subtotal"
+               title="Сработает">
 
       </FormRow>
     );

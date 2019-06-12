@@ -19,6 +19,8 @@ class PaymentRepeatForm extends PureComponent {
             <PaymentQuantity />
             <PaymentTime />
             <PaymentSubtotal />
+            <button className="ui-button"
+                    type="submit">Сохранить</button>
           </form>
         </div>
       </section>

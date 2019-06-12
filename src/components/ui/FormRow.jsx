@@ -14,7 +14,7 @@ const FormRow = props => {
     <article {...formRowProps}>
       <h3 className="ui-form-row__title">{props.title}</h3>
       <div className="ui-form-row__body">
-        {children}
+        {props.children}
       </div>
     </article>
   );
