@@ -37,13 +37,13 @@ class PaymentFrequency extends PureComponent {
 
           <select name="weekDay"
                   id="weekDay">
-            <option value="monday">понедельник</option>
-            <option value="tuesday">вторник</option>
-            <option value="wednesday">среда</option>
-            <option value="thursday">четверг</option>
-            <option value="friday">пятница</option>
-            <option value="saturday">суббота</option>
-            <option value="sunday">воскресенье</option>
+            <option value="1">понедельник</option>
+            <option value="2">вторник</option>
+            <option value="3">среда</option>
+            <option value="4">четверг</option>
+            <option value="5">пятница</option>
+            <option value="6">суббота</option>
+            <option value="7">воскресенье</option>
           </select>
 
         </Option>
