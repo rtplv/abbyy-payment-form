@@ -1,4 +1,4 @@
-import Calendar from './FormRow';
+import Calendar from './Calendar';
 import FormRow from './FormRow';
 import Option from './Option';
 

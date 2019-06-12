@@ -20,6 +20,10 @@ input[type="date"] {
   }
 }
 
+input[type="radio"] {
+  margin: 0;
+}
+
 .app-page {
   display: flex;
   justify-content: center;
