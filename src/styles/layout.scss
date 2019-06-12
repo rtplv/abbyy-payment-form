@@ -12,6 +12,14 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+input[type="time"],
+input[type="date"] {
+  &::-webkit-clear-button,
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
+}
+
 .app-page {
   display: flex;
   justify-content: center;

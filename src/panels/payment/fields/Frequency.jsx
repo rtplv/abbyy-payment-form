@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormRow } from 'components/ui';
 
-class PaymentFrequency extends Component {
+class PaymentFrequency extends PureComponent {
   static propTypes = {};
 
   render() {

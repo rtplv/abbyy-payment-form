@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import './Submit.scss';
 
 import { FormRow } from 'components/ui';
 
-class PaymentSubmit extends Component {
+class PaymentSubmit extends PureComponent {
   static propTypes = {};
 
   render() {

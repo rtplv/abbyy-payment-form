@@ -1,0 +1,22 @@
+.payment-repeat-quantity {
+  &__options {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__option {
+    margin-right: 20px;
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+    input[type="text"],
+    input[type="date"] {
+      margin: 0 10px;
+    }
+  }
+  &__limited-by-qty-field {
+    width: 25px;
+  }
+  &__limited-by-date-field {
+    width: 110px;
+  }
+}
