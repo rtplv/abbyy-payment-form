@@ -67,7 +67,8 @@ class PaymentRepeatForm extends PureComponent {
       qtyByDateValue,
       formattedQtyByDateValue,
 
-      timeValue
+      timeValue,
+      submitDates,
     } = this.props;
 
     return (
@@ -93,7 +94,8 @@ class PaymentRepeatForm extends PureComponent {
           <PaymentTime timeValue={timeValue}
                        onChange={this.handleTimeChange} />
 
-          <PaymentSubmit onSubmit={this.handleFormSubmit}/>
+          <PaymentSubmit dates={submitDates}
+                         onSubmit={this.handleFormSubmit}/>
         </div>
       </section>
     );

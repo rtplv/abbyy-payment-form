@@ -1,5 +1,21 @@
 .payment-repeat-submit {
+  &__date,
+  &__repeater {
+    display: block;
+    margin-bottom: 10px;
+  }
   &__button {
     margin-top: 30px;
+    &:hover {
+      box-shadow: 0 3px 0 0 #4aabff;
+      cursor: pointer;
+    }
+    &:focus {
+      outline: 0;
+      box-shadow: 0 3px 0 0 #4aabff;
+    }
+    &:active {
+      box-shadow: none;
+    }
   }
 }

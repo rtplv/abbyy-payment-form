@@ -49,13 +49,13 @@ class PaymentFrequency extends PureComponent {
                   value={weekValue}
                   onChange={this.handleWeekValueChange}
                   id="weekDay">
-            <option value="1">понедельник</option>
-            <option value="2">вторник</option>
-            <option value="3">среда</option>
-            <option value="4">четверг</option>
-            <option value="5">пятница</option>
-            <option value="6">суббота</option>
-            <option value="7">воскресенье</option>
+            <option value="0">понедельник</option>
+            <option value="1">вторник</option>
+            <option value="2">среда</option>
+            <option value="3">четверг</option>
+            <option value="4">пятница</option>
+            <option value="5">суббота</option>
+            <option value="6">воскресенье</option>
           </select>
 
         </Option>
@@ -73,16 +73,8 @@ class PaymentFrequency extends PureComponent {
                   value={monthValue}
                   id="monthQty">
             <option value="1">1</option>
-            <option value="2">2</option>
             <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
             <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
             <option value="12">12</option>
           </select>
         </Option>

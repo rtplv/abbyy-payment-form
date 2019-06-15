@@ -11,10 +11,25 @@ class PaymentSubmit extends PureComponent {
     onSubmit: PropTypes.func,
   };
 
+  static defaultProps = {
+    maxCount: PropTypes.number,
+  };
+
   render() {
+    const { dates } = this.props;
+    const shortDatesArr = dates.slice(0, 6);
+
     return (
       <FormRow className="payment-repeat-submit"
                title="Сработает">
+        {shortDatesArr.map((date, idx) => (
+          <span className="payment-repeat-submit__date"
+                key={date + idx}>
+            {date}
+          </span>
+        ))}
+
+        {dates.length > 6 && <span className="payment-repeat-submit__repeater">-//-//-</span>}
 
         <button className="ui-button payment-repeat-submit__button"
                 onClick={this.handleFormSubmit}

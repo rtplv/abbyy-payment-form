@@ -1,7 +1,11 @@
 import { createSelector } from 'reselect';
 import {
-    getDatesDifferenceByMonth,
+    getMonthsDifferenceBetweenDates,
+    getWeeksDifferenceBetweenDates,
+    getDaysDifferenceBetweenDates,
     increaseDateByMonth,
+    setDayOfNextWeek,
+    getDateLocaleStringByDate,
 } from 'helpers/date';
 
 const getFreqType = state => state.paymentRepeatForm.freqType;
@@ -38,26 +42,47 @@ export const getDateIntervalRange = createSelector(
     getQtyByDateValue,
     getTimeValue,
   (freqType, freqMonthValue, freqWeekValue, qtyType, qtyValue, qtyByDateValue, timeValue) => {
-    const frequency = freqType === 'weekly' ? freqWeekValue : freqMonthValue;
     let dates = [];
     let quantity = 0;
 
     // get quantity by selected qtyType
     switch(qtyType) {
         case 'unlimited':
-            quantity = 6;
+            quantity = 7;
             break;
         case 'byQty':
             quantity = qtyValue;
             break;
         case 'byDate':
-            quantity = getDatesDifferenceByMonth(new Date(), new Date(qtyByDateValue));
+            const currentDate = new Date();
+            const targetDate = new Date(qtyByDateValue);
+
+            quantity = freqType === 'monthly' ?
+              Math.floor(getDaysDifferenceBetweenDates(currentDate, targetDate) / 31) :
+              getWeeksDifferenceBetweenDates(currentDate, targetDate);
             break;
     }
 
-    console.log(quantity);
-    console.log(quantity * frequency);
+    let currentDate = new Date();
 
+    for(let i = 0; i < quantity; i++) {
+        let dateStr = '';
+
+        switch (freqType) {
+            case 'weekly':
+                currentDate = setDayOfNextWeek(currentDate, freqWeekValue);
+                dateStr += getDateLocaleStringByDate(currentDate);
+                break;
+            case 'monthly':
+                currentDate = increaseDateByMonth(currentDate, freqMonthValue);
+                dateStr += getDateLocaleStringByDate(currentDate);
+                break;
+        }
+
+        if (i === 0) dateStr += ` ${timeValue}`;
+
+        dates.push(dateStr);
+    }
 
     return dates;
   },

@@ -13,10 +13,10 @@ import {
 const initialState = {
   freqType: 'weekly',
   freqMonthValue: 1,
-  freqWeekValue: 1,
+  freqWeekValue: 0,
 
   qtyType: 'unlimited',
-  qtyValue: 0,
+  qtyValue: 1,
   qtyByDateValue: Date.now(),
 
   timeValue: '00:00',

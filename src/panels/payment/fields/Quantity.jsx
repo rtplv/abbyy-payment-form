@@ -75,9 +75,10 @@ class PaymentQuantity extends PureComponent {
   };
 
   handleDateValueChange = e => {
+    if (!e.target.value) return;
     if (this.props.onChangeDateValue) {
-      const value = new Date(e.target.value).getTime();
-      this.props.onChangeDateValue(value);
+      const timestampValue = new Date(e.target.value).getTime();
+      this.props.onChangeDateValue(timestampValue);
     }
   };
 
