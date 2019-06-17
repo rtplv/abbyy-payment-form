@@ -17,7 +17,7 @@ class PaymentSubmit extends PureComponent {
 
   render() {
     const { dates } = this.props;
-    const shortDatesArr = dates.slice(0, 6);
+    const shortDatesArr = dates.slice(0, 5);
 
     return (
       <FormRow className="payment-repeat-submit"
@@ -29,7 +29,7 @@ class PaymentSubmit extends PureComponent {
           </span>
         ))}
 
-        {dates.length > 6 && <span className="payment-repeat-submit__repeater">-//-//-</span>}
+        {dates.length >= 6 && <span className="payment-repeat-submit__repeater">-//-//-</span>}
 
         <button className="ui-button payment-repeat-submit__button"
                 onClick={this.handleFormSubmit}
